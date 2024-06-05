@@ -5,19 +5,15 @@ import Forecast from "./Component/Forecast";
 import AdditionalDetails from "./Component/AdditionalDetails";
 import axios from "axios";
 import "./App.css";
-
 const API_KEY = "55ca4bf3871a1b90d5163940de18ae9c";
-
 const App = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const handleSearch = async (location) => {
     setLoading(true);
     setError(null);
-
     try {
       const weatherResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
@@ -25,7 +21,6 @@ const App = () => {
       const forecastResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`
       );
-
       setCurrentWeather({
         temp: weatherResponse.data.main.temp,
         description: weatherResponse.data.weather[0].description,
